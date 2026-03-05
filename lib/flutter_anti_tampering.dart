@@ -1,6 +1,28 @@
 import 'dart:io';
 import 'package:flutter/services.dart';
 
+/// A service that checks whether the application has been tampered with
+/// or modified on the current device.
+///
+/// This plugin performs integrity verification using platform-specific
+/// mechanisms:
+///
+/// - **Android** → Verifies the app signing certificate using SHA-256.
+/// - **iOS** → Uses `IOSSecuritySuite` to detect bundle tampering.
+///
+/// Example usage:
+///
+/// ```dart
+/// final isSecure = await DeviceIntegrityService.instance.isDeviceHasIntegrity(
+///   androidSignature: "your_sha256_signature",
+///   iosBundleId: "com.example.app",
+/// );
+///
+/// if (!isSecure) {
+///   // App might be tampered
+/// }
+/// ```
+
 class FlutterAntiTampering {
   FlutterAntiTampering._();
 
